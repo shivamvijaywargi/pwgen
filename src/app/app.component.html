@@ -1,0 +1,49 @@
+<div class="container">
+  <div class="content">
+    <h1>Password Generator</h1>
+    <div>
+      <label for="length">Enter Length</label>
+      <input
+        id="length"
+        type="text"
+        (input)="onChangeLength($event.target.value)"
+      />
+    </div>
+
+    <div>
+      <label for="letters">Use Letters</label>
+      <input id="letters" type="checkbox" (change)="onChangeUseLetters()" />
+    </div>
+
+    <div>
+      <label for="numbers">Use Numbers</label>
+      <input id="numbers" type="checkbox" (change)="onChangeUseNumbers()" />
+    </div>
+
+    <div>
+      <label for="symbols">Use Symbols</label>
+      <input id="symbols" type="checkbox" (change)="onChangeUseSymbols()" />
+    </div>
+
+    <div>
+      <button
+        (click)="onButtonClick()"
+        [disabled]="
+          !(
+            enteredLength &&
+            (includeLetters || includeNumbers || includeSymbols)
+          )
+        "
+      >
+        Generate!
+      </button>
+    </div>
+
+    <div *ngIf="password">
+      <label for="">Your Password </label>
+      <input type="text" [value]="password" />
+    </div>
+  </div>
+</div>
+
+<router-outlet></router-outlet>
